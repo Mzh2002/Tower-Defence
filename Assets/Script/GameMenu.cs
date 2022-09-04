@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameMenu : MonoBehaviour
 {
-    public void onStartGame()
+    // methods built for the two buttons
+    public void OnStartGame()
     {
         SceneManager.LoadScene(1);
     }
 
-    public void onExitGame()
+    public void OnExitGame()
     {
 #if UNITY_EDITOR
+        // if it is played in Unity, just stop the game
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();

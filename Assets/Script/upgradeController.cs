@@ -9,6 +9,7 @@ public class upgradeController : MonoBehaviour
     public Button upgradeButton;
     public Button destroyButton;
 
+    // the animator for showing upgrade canvas
     private Animator upgradeCanvasAnimator;
 
     public Text upgradeText;

@@ -363,7 +363,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1931387648}
         m_TargetAssemblyTypeName: gameManager, Assembly-CSharp
-        m_MethodName: onMenuButtonDown
+        m_MethodName: OnMenuButtonDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13124,6 +13124,7 @@ MonoBehaviour:
     upgradeCost: 100
     type: 0
   moneyText: {fileID: 526190254}
+  money: 500
   moneyAnimator: {fileID: 526190256}
 --- !u!114 &1931387647
 MonoBehaviour:
@@ -13303,7 +13304,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1931387648}
         m_TargetAssemblyTypeName: gameManager, Assembly-CSharp
-        m_MethodName: onReplayButtonDown
+        m_MethodName: OnReplayButtonDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

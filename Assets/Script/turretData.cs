@@ -1,3 +1,4 @@
+// This is not a MonoBehavior class, it's just used to store the data for each turret
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

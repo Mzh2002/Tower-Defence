@@ -7,6 +7,7 @@ public class enemy : MonoBehaviour
 {
 
     public int movingSpeed = 10;
+    // the road points that enemies follow
     private Transform[] positions;
     private int idx = 0;
 
@@ -50,7 +51,8 @@ public class enemy : MonoBehaviour
 
     void ReachDestination()
     {
-        gameManager.Instance.fail();
+        // instantly lose the game if an enemy reaches the destination
+        gameManager.Instance.Fail();
         GameObject.Destroy(this.gameObject);
     }
 
@@ -59,7 +61,7 @@ public class enemy : MonoBehaviour
         enemySpawner.enemyAlive--;
     }
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         hp -= damage;
         hpSlider.value = hp / totalHp;
@@ -71,6 +73,7 @@ public class enemy : MonoBehaviour
 
     private void Die()
     {
+        // die and generate dying effect
         GameObject effect = GameObject.Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
         Destroy(this.gameObject);
         Destroy(effect, 1.5f);

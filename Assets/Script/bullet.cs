@@ -9,20 +9,22 @@ public class bullet : MonoBehaviour
 
     private Transform target;
 
+    // the explosion effect of the bullet when it hits enemy
     public GameObject explosionEffectPrefab;
 
     public float explosionDistance = 1.2f;
 
-    public void setTarget(Transform _target)
+    public void SetTarget(Transform _target)
     {
         target = _target;
     }
 
     private void Update()
     {
+        // when the enemy is killed while bullet is flying, just explode
         if (target == null)
         {
-            explode();
+            Explode();
             return;
         }
 
@@ -34,12 +36,12 @@ public class bullet : MonoBehaviour
         Vector3 dir = transform.position - target.position;
         if(dir.magnitude <= explosionDistance)
         {
-            target.GetComponent<enemy>().takeDamage(damage);
-            explode();
+            target.GetComponent<enemy>().TakeDamage(damage);
+            Explode();
         }
     }
 
-    private void explode()
+    private void Explode()
     {
         GameObject effect = GameObject.Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
         Destroy(this.gameObject);

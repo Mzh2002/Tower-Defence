@@ -1,3 +1,4 @@
+// This is the class for the wayPoints for enemies to follow the path
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

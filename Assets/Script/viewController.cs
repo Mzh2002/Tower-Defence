@@ -9,7 +9,7 @@ public class viewController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // use wasd to control the movement of camera
+        // use WASD to control the movement of camera
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         // use mouse to control the scale of the view

@@ -319,7 +319,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4109604676763409287}
         m_TargetAssemblyTypeName: GameMenu, Assembly-CSharp
-        m_MethodName: onStartGame
+        m_MethodName: OnStartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -432,7 +432,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4109604676763409287}
         m_TargetAssemblyTypeName: GameMenu, Assembly-CSharp
-        m_MethodName: onExitGame
+        m_MethodName: OnExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

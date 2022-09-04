@@ -12,10 +12,12 @@ public class mapCube : MonoBehaviour
     [HideInInspector]
     public turretData TurretData;
 
+    // the prefab of construction effect
     public GameObject buildEffect;
 
     private new Renderer renderer;
 
+    // whether the turret on the mapCube is upgraded
     [HideInInspector]
     public bool isUpgraded = false;
 
@@ -24,35 +26,37 @@ public class mapCube : MonoBehaviour
         renderer = GetComponent<Renderer>();
     }
 
-    public void buildTurret(turretData data)
+    public void BuildTurret(turretData data)
     {
         turretGo = GameObject.Instantiate(data.turretPrefab, transform.position, Quaternion.identity);
         TurretData = data;
-        useBuildEffect();
+        UseBuildEffect();
     }
 
-    public void upgradeTurret()
+    public void UpgradeTurret()
     {
         if (isUpgraded) return;
         Destroy(turretGo);
         turretGo = GameObject.Instantiate(TurretData.upgradedPrefab, transform.position, Quaternion.identity);
         isUpgraded = true;
-        useBuildEffect();
+        UseBuildEffect();
     }
 
-    public void destroyTurret()
+    public void DestroyTurret()
     {
         Destroy(turretGo);
         isUpgraded = false;
         TurretData = null;
         turretGo = null;
-        useBuildEffect();
+        UseBuildEffect();
     }
 
     private void OnMouseEnter()
     {
+        // if the mouse is on the mapCube
         if (turretGo == null && EventSystem.current.IsPointerOverGameObject() == false)
         {
+            // if there is not a turret on it and mouse is not on UI, then we use red color to mark it
             renderer.material.color = Color.red;
         }
     }
@@ -62,7 +66,7 @@ public class mapCube : MonoBehaviour
         renderer.material.color = Color.white;
     }
 
-    private void useBuildEffect()
+    private void UseBuildEffect()
     {
         GameObject effect = GameObject.Instantiate(buildEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1.5f);

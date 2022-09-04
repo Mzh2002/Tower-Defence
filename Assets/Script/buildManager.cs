@@ -1,3 +1,5 @@
+// This is the clss that controlls the construction and upgrade of turrets
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,19 +8,20 @@ using UnityEngine.UI;
 
 public class buildManager : MonoBehaviour
 {
-
+    // data of the three kinds of turrets
     public turretData laserData;
     public turretData missleData;
     public turretData standardData;
 
-    private upgradeController controller; 
-
     private turretData selectedTurret;
+
+    // controller of upgrading tool
+    private upgradeController controller; 
 
     private mapCube selectedMapCube;
 
     public Text moneyText;
-    private int money = 500;
+    public int money = 500;
 
     public Animator moneyAnimator;
 
@@ -40,22 +43,23 @@ public class buildManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // when the left key is down
             if (EventSystem.current.IsPointerOverGameObject() == false)
             {
-                // build turret
+                // if pointer is not on the UI, do the following things
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("MapCube"));
                 if (isCollider)
                 {
-                    // if mouse hit a mapCube
                     mapCube MapCube = hit.collider.GetComponent<mapCube>();
                     if (selectedTurret != null && MapCube.turretGo == null)
                     {
+                        // if mouse hit a mapCube with no turret on it, then we build a turret
                         if (money >= selectedTurret.cost)
                         {
                             updateMoney(-selectedTurret.cost);
-                            MapCube.buildTurret(selectedTurret);
+                            MapCube.BuildTurret(selectedTurret);
                         }
                         else
                         {
@@ -65,6 +69,7 @@ public class buildManager : MonoBehaviour
                     }
                     else if (MapCube.turretGo != null)
                     {
+                        // if mouse hit a mapCube with turret, then we do upgrading
                         if (MapCube == selectedMapCube && controller.upgradeCanvas.activeInHierarchy)
                         {
                             StartCoroutine(controller.HideUpgradeUI());
@@ -80,6 +85,7 @@ public class buildManager : MonoBehaviour
         }
     }
 
+    // methods for turret selections
     public void OnLaserSelected(bool IsOn)
     {
         if (IsOn)
@@ -104,6 +110,7 @@ public class buildManager : MonoBehaviour
         }
     }
 
+    // methods for upgrade and destroy button
     public void OnUpgradeButtonDown()
     {
         int upgradeCost = selectedMapCube.TurretData.upgradeCost;
@@ -115,14 +122,14 @@ public class buildManager : MonoBehaviour
         else
         {
             updateMoney(-upgradeCost);
-            selectedMapCube.upgradeTurret();
+            selectedMapCube.UpgradeTurret();
             StartCoroutine(controller.HideUpgradeUI());
         }
     }
 
     public void OnDestroyButtonDown()
     {
-        selectedMapCube.destroyTurret();
+        selectedMapCube.DestroyTurret();
         StartCoroutine(controller.HideUpgradeUI());
     }
 }
